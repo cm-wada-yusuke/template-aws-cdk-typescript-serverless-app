@@ -27,7 +27,7 @@ export async function greetingServiceApplicationStack(
         functionName: 'getGreetingReply-function',
         code: lambda.Code.fromAsset(NODE_LAMBDA_SRC_DIR),
         handler:
-            'handlers/api-gw/greeting/api-gw-get-greeting-reply-handler.ts.handler',
+            'lambda/handlers/api-gw/greeting/api-gw-get-greeting-reply-handler.handler',
         runtime: lambda.Runtime.NODEJS_12_X,
         layers: [nodeModulesLayer],
         environment: {

@@ -3,9 +3,9 @@ import * as aws from 'aws-sdk';
 jest.setTimeout(10000);
 describe('lambda invoke test', () => {
     describe('success: greeting function invoke', () => {
-        test('stamp api returns failed response', async () => {
+        test('stamp api returns reply response', async () => {
             const event = {
-                greeting: 'How are you?',
+                message: 'How are you?',
             };
 
             const client = new aws.Lambda({
@@ -15,9 +15,7 @@ describe('lambda invoke test', () => {
                 .invoke({
                     FunctionName: 'getGreetingReply-function',
                     InvocationType: 'RequestResponse',
-                    Payload: JSON.stringify({
-                        event,
-                    }),
+                    Payload: JSON.stringify(event),
                 })
                 .promise();
             expect(response.StatusCode).toEqual(200);
