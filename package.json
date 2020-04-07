@@ -1,0 +1,62 @@
+{
+  "name": "template-aws-cdk-typescript-serverless-app",
+  "version": "0.1.0",
+  "description": "serverless greeting service",
+  "main": "index.js",
+  "license": "UNLICENSED",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {
+    "source-map-support": "^0.5.16"
+  },
+  "devDependencies": {
+    "@types/jest": "25.1.4",
+    "@types/node": "^13.9.8",
+    "@typescript-eslint/eslint-plugin": "^2.26.0",
+    "@typescript-eslint/parser": "^2.26.0",
+    "add": "^2.0.6",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "husky": "^4.2.3",
+    "jest": "25.2.4",
+    "lint-staged": "^10.1.1",
+    "npm-check-updates": "^4.1.0",
+    "prettier": "^2.0.2",
+    "shx": "^0.3.2",
+    "ts-jest": "25.3.0",
+    "ts-node": "^8.8.1",
+    "typescript": "^3.8.3",
+    "yarn": "^1.22.4"
+  },
+  "scripts": {
+    "deploy": "yarn dist-lock && yarn workspace app-node dist && yarn workspace infra-aws dist+deploy",
+    "test": "yarn test:unit@infra && yarn test:unit@app && yarn test:e2e@app",
+    "build": "yarn workspace app-node build && yarn workspace infra-aws build",
+    "clean": "yarn workspace app-node clean && yarn workspace infra-aws clean",
+    "test:unit@app": "yarn workspace app-node test:unit",
+    "test:unit@infra": "yarn dist-lock && yarn workspace app-node dist && yarn workspace infra-aws dist && yarn workspace infra-aws test:unit",
+    "test:e2e@app": "yarn workspace app-node test:e2e",
+    "upgrade:show": "yarn workspace infra-aws upgrade:show && yarn workspace app-node upgrade:show",
+    "upgrade:do": "yarn workspace infra-aws upgrade:do && yarn workspace app-node upgrade:do",
+    "lint": "eslint --cache './packages/**/*.{ts,tsx}'",
+    "lint-fix": "eslint --cache --fix '**/*.{ts,tsx}'",
+    "dist-lock": "shx cp yarn.lock packages/app-node",
+    "lint-staged": "lint-staged"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "yarn run lint-fix",
+      "yarn run lint",
+      "git add"
+    ]
+  }
+}

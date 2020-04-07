@@ -1,0 +1,31 @@
+{
+  "name": "app-node",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@bugsnag/node": "^6.5.2",
+    "@types/uuid": "^7.0.2",
+    "aws-sdk": "2.651.0",
+    "luxon": "^1.22.2",
+    "uuid": "^7.0.3"
+  },
+  "devDependencies": {
+    "@types/luxon": "^1.22.0",
+    "@types/node": "^13.9.8",
+    "@types/uuid": "^7.0.2",
+    "jest-circus": "^25.2.4",
+    "shx": "^0.3.2"
+  },
+  "scripts": {
+    "dist": "yarn clean+build+bundle",
+    "test:unit": "jest --config=jest.config.unit.js --coverage",
+    "test:e2e": "jest --config=jest.config.e2e.js --runInBand --testRunner='jest-circus/runner'",
+    "upgrade:show": "ncu",
+    "upgrade:do": "ncu -u",
+    "clean+build+bundle": "yarn clean && yarn build && yarn bundle",
+    "clean": "shx rm -rf dist/ && shx rm -rf coverage/",
+    "build": "tsc",
+    "bundle": "shx mkdir -p dist/layer/nodejs &&  shx cp yarn.lock dist/layer/nodejs &&  shx cp package.json dist/layer/nodejs && yarn --cwd dist/layer/nodejs --production install"
+  }
+}
