@@ -2,7 +2,7 @@
   "name": "template-aws-cdk-typescript-serverless-app",
   "version": "0.1.0",
   "description": "serverless greeting service",
-  "main": "index.js",
+  "repository": "https://github.com/cm-wada-yusuke/template-aws-cdk-typescript-serverless-app.git",
   "license": "UNLICENSED",
   "private": true,
   "workspaces": [
