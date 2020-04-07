@@ -47,7 +47,7 @@ export async function greetingDeployPipelineStack(
         {
             projectName: 'GreetinApplicationDeploy-project',
             buildSpec: codeBuild.BuildSpec.fromSourceFilename(
-                './buldspGitHubSourceAction-stageec/buildspec-deploy.yml',
+                './buldspec/buildspec-deploy.yml',
             ),
             role: deployRole,
             environment: {
