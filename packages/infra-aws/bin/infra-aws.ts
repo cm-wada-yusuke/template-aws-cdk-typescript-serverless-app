@@ -8,7 +8,7 @@ async function buildApp(): Promise<void> {
     const app = new cdk.App();
 
     // Application stack
-    await greetingServiceApplicationStack(app, 'StampServiceStack');
+    await greetingServiceApplicationStack(app, 'GreetingServiceStack');
 
     // Deploy stack
     await greetingDeployPipelineStack(app, 'DeployStack');
