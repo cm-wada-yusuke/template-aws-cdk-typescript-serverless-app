@@ -34,6 +34,7 @@
   },
   "scripts": {
     "deploy": "yarn dist-lock && yarn workspace app-node dist && yarn workspace infra-aws dist+deploy",
+    "dist": "yarn dist-lock && yarn workspace app-node dist && yarn workspace infra-aws dist",
     "test": "yarn test:unit@infra && yarn test:unit@app && yarn test:e2e@app",
     "build": "yarn workspace app-node build && yarn workspace infra-aws build",
     "clean": "yarn workspace app-node clean && yarn workspace infra-aws clean",

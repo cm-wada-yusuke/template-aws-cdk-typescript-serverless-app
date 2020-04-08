@@ -63,13 +63,13 @@
     "tsas-cdk": "0.0.18"
   },
   "config": {
-    "appStacks": "StampServiceStack",
+    "appStacks": "GreetingServiceStack",
     "deployStacks": "DeployStack",
     "buildStacks": "BuildStack"
   },
   "scripts": {
     "dist+deploy": "yarn dist && yarn deploy",
-    "deploy": "cdk deploy $npm_package_config_aptacks --require-approval never ",
+    "deploy": "cdk deploy --require-approval never $npm_package_config_appStacks",
     "upgrade:show": "ncu",
     "upgrade:do": "ncu -u",
     "test:unit": "jest --config=jest.config.unit.js --coverage",
