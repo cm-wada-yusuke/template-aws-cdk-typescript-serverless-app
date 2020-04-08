@@ -3,7 +3,7 @@ import * as aws from 'aws-sdk';
 jest.setTimeout(10000);
 describe('lambda invoke test', () => {
     describe('success: greeting function invoke', () => {
-        test('stamp api returns reply response', async () => {
+        test('greeting api returns reply response', async () => {
             const event = {
                 message: 'How are you?',
             };
