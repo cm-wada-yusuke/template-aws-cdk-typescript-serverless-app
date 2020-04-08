@@ -63,7 +63,7 @@
     "tsas-cdk": "0.0.18"
   },
   "config": {
-    "appStacks": "StampServiceStack",
+    "appStacks": "GreetingServiceStack",
     "deployStacks": "DeployStack",
     "buildStacks": "BuildStack"
   },
