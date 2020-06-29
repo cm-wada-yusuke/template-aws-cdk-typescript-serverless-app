@@ -1,5 +1,5 @@
 import * as cdk from '@aws-cdk/core';
-import { Stack } from '@aws-cdk/core';
+import { CfnOutput, Stack } from '@aws-cdk/core';
 import * as lambda from '@aws-cdk/aws-lambda';
 import { NODE_LAMBDA_LAYER_DIR, NODE_LAMBDA_SRC_DIR } from './processes/setup';
 
@@ -23,7 +23,7 @@ export async function greetingServiceApplicationStack(
         },
     );
 
-    new lambda.Function(stack, 'getGreetingReply', {
+    const greetingFn = new lambda.Function(stack, 'getGreetingReply', {
         functionName: 'getGreetingReply-function',
         code: lambda.Code.fromAsset(NODE_LAMBDA_SRC_DIR),
         handler:
@@ -33,6 +33,11 @@ export async function greetingServiceApplicationStack(
         environment: {
             REGION: cdk.Stack.of(stack).region,
         },
+    });
+
+    new CfnOutput(stack, 'GreetingFunctionArn', {
+        exportName: 'GreetingFunctionArn',
+        value: greetingFn.functionArn,
     });
 
     return stack;
